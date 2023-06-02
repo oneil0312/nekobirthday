@@ -1,5 +1,5 @@
 // 倒數日期（2023/06/23）
-var countdownDate = new Date('2023-06-02').getTime();
+var countdownDate = new Date('2023-06-23').getTime();
 
 // 更新倒數計時器
 function updateCountdown() {
