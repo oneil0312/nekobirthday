@@ -20,7 +20,7 @@ function updateCountdown() {
     // 倒數計時結束時的操作
     clearInterval(countdownInterval);
     // 跳轉到生日慶祝頁面
-    window.location.href = 'birthday.html';
+    window.location.href = 'HB.html';
   }
 }
 
