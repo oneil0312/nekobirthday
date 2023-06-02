@@ -1,5 +1,5 @@
 // 倒數日期（2023/06/23）
-var countdownDate = new Date('2023-06-23').getTime();
+var countdownDate = new Date('2023-06-02').getTime();
 
 // 更新倒數計時器
 function updateCountdown() {
@@ -20,7 +20,7 @@ function updateCountdown() {
     // 倒數計時結束時的操作
     clearInterval(countdownInterval);
     // 跳轉到生日慶祝頁面
-    window.location.href = 'birthday.html';
+    window.location.href = 'HB.html';
   }
 }
 
