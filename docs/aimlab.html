@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #grid {
+        width: 400px;
+        height: 400px;
+        border: 1px solid black;
+        position: relative;
+      }
+      .ball {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: red;
+        position: absolute;
+        cursor: pointer;
+      }
+      #victoryMessage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 36px;
+        font-weight: bold;
+        color: green;
+      }
+      #failureMessage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 36px;
+        font-weight: bold;
+        color: red;
+      }
+      #restartMessage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 36px;
+        font-weight: bold;
+        color: blue;
+      }
+      #gameTitle {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="gameTitle">Aimlab小遊戲，20分獲勝</h1>
+    <button id="startButton">开始</button>
+    <div id="grid"></div>
+    <p>Score: <span id="score">0</span></p>
+    <p>Time: <span id="timer">30</span> 秒</p>
+
+    <script>
+      var grid = document.getElementById('grid');
+      var score = 0;
+      var gameStarted = false;
+      var gameTimer;
+      var countdownTimer;
+      var ball = null;
+      var victoryThreshold = 20;
+      var failureThreshold = 20;
+      var ballDuration = 700; // 球存在时间为0.7秒
+      var challengeCount = 0;
+
+      function startGame() {
+        if (gameStarted) return;
+
+        gameStarted = true;
+        document.getElementById('startButton').disabled = true;
+        document.getElementById('score').innerText = score;
+
+        // 清除消息
+        var victoryMessage = document.getElementById('victoryMessage');
+        if (victoryMessage) {
+          victoryMessage.remove();
+        }
+        var failureMessage = document.getElementById('failureMessage');
+        if (failureMessage) {
+          failureMessage.remove();
+        }
+        var restartMessage = document.getElementById('restartMessage');
+        if (restartMessage) {
+          restartMessage.remove();
+        }
+
+        countdownTimer = setInterval(updateTimer, 1000);
+        gameTimer = setTimeout(endGame, 30000); // 游戏时间为30秒
+
+        createBall();
+      }
+
+      function updateTimer() {
+        var timerElement = document.getElementById('timer');
+        var time = parseInt(timerElement.innerText);
+
+        if (time > 0) {
+          time--;
+          timerElement.innerText = time;
+        }
+      }
+
+      function endGame() {
+        clearInterval(countdownTimer);
+        clearTimeout(gameTimer);
+        grid.innerHTML = '';
+
+        if (score >= victoryThreshold) {
+          var victoryMessage = document.createElement('div');
+          victoryMessage.id = 'victoryMessage';
+          victoryMessage.innerText =
+            '生日快樂，請截圖並跟宮袁領禮物！';
+          document.body.appendChild(victoryMessage);
+        } else if (challengeCount === 0) {
+          var failureMessage = document.createElement('div');
+          failureMessage.id = 'failureMessage';
+          failureMessage.innerText =
+            '失敗，將降低遊戲難度改為15分獲勝，請再接再厲！';
+          document.body.appendChild(failureMessage);
+          victoryThreshold = 15;
+          ballDuration = 700;
+          challengeCount = 1;
+        } else {
+          var restartMessage = document.createElement('div');
+          restartMessage.id = 'restartMessage';
+          restartMessage.innerText =
+            '(◔౪◔)看來你會很需要這個禮物，趕快截圖跟宮袁領取';
+          document.body.appendChild(restartMessage);
+          resetGame();
+        }
+
+        gameStarted = false;
+        document.getElementById('startButton').disabled = false;
+        score = 0;
+        document.getElementById('score').innerText = score;
+        document.getElementById('timer').innerText = '30';
+      }
+
+      function resetGame() {
+        challengeCount = 2;
+        victoryThreshold = 20;
+        ballDuration = 500;
+      }
+
+      function createBall() {
+        if (ball) {
+          ball.remove(); // 移除上一个球
+        }
+
+        ball = document.createElement('div');
+        ball.classList.add('ball');
+        ball.style.left = Math.floor(Math.random() * 370) + 'px'; // 减小球的范围，以免溢出边界
+        ball.style.top = Math.floor(Math.random() * 370) + 'px'; // 减小球的范围，以免溢出边界
+        grid.appendChild(ball);
+
+        setTimeout(function () {
+          ball.remove();
+          if (gameStarted) {
+            createBall();
+          }
+        }, ballDuration);
+
+        ball.addEventListener('mousedown', function () {
+          ball.remove();
+          score++;
+          document.getElementById('score').innerText = score;
+        });
+      }
+
+      document.getElementById('startButton').addEventListener('click', startGame);
+    </script>
+  </body>
+</html>

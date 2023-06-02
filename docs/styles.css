@@ -16,6 +16,21 @@ header {
   padding: 20px;
 }
 
+.game-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff6699;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.game-button:hover {
+  background-color: #e64d8f;
+}
+
 .about {
   margin-top: 50px;
   text-align: center;
