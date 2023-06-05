@@ -1,4 +1,31 @@
 /* 全局樣式 */
+
+header {
+  position: relative;
+}
+
+.left-gif,
+.right-gif {
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translateY(-50%);
+  background-color: #ffcc00;/* 與 header 的背景色相同 */
+}
+
+.left-gif {
+  left: 400px;
+  background-image: url(https://media1.giphy.com/media/bGCfsOjRhHbYhUHhOu/giphy.gif?cid=ecf05e47wycd6jjphz7y0h3vx8lcerzv4c7oa9h2txuat9qh&ep=v1_gifs_search&rid=giphy.gif&ct=g);
+}
+
+.right-gif {
+  right: 400px;
+  background-image: url(https://media1.giphy.com/media/bGCfsOjRhHbYhUHhOu/giphy.gif?cid=ecf05e47wycd6jjphz7y0h3vx8lcerzv4c7oa9h2txuat9qh&ep=v1_gifs_search&rid=giphy.gif&ct=g);
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;
@@ -7,7 +34,16 @@ body {
   padding: 0;
 }
 
-h1, h2 {
+h1 {
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 45px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  
+  text-align: center;
+}
+
+
+h2 {
   text-align: center;
 }
 
@@ -34,7 +70,7 @@ header {
 .about {
   margin-top: 50px;
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
   color: #f80;
   animation-name: fireworks;
   animation-duration: 6s; /* 調整持續時間為6秒，包括停頓時間 */
@@ -159,4 +195,115 @@ footer {
   color: #fff;
   text-align: center;
   padding: 10px;
+}
+.birthday-container {
+  text-align: center;
+  padding: 20px;
+}
+
+#birthday-button {
+  padding: 10px 20px;
+  background-color: #ffcc00;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+#birthday-message {
+  display: none;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animated-text {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+}
+
+
+.volleyball {
+  position: absolute;
+  top: 50%; /* 設定初始位置在容器底部 */
+  left: -50px; /* 初始位置在左邊屏幕外 */
+  width: 50px;
+  height: 50px;
+  background-image: url(https://mikasasports.co.jp/e/wp-content/uploads/2018/11/V200W_2.png); /* 替換為實際的排球圖片路徑 */
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: volleyballAnimation 4s cubic-bezier(0.42, 0, 0.58, 1) infinite; /* 設定動畫效果 */
+}
+
+@keyframes volleyballAnimation {
+  0% {
+    left: -50px; /* 初始位置在左邊屏幕外 */
+    transform: translateY(0); /* 初始時不偏移垂直位置 */
+  }
+  50% {
+    left: calc(50% - 25px); /* 中間位置在容器的水平中心 */
+    transform: translateY(-200px); /* 偏移垂直位置向上 200px */
+  }
+  100% {
+    left: calc(100% + 50px); /* 最終位置在右邊屏幕外 */
+    transform: translateY(0); /* 最終時不偏移垂直位置，回到初始位置 */
+  }
+}
+
+img {
+  border: 2px solid #000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transform: perspective(800px) rotateX(10deg) rotateY(10deg);
+}
+
+
+.warning-btn {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.warning-btn:active {
+  transform: translateY(2px);
+}
+
+#warning-button {
+  margin-top: 20px;
+}
+
+#counter {
+  margin-top: 10px;
+  font-size: 16px;
 }

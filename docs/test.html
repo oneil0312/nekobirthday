@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Button Counter</title>
+</head>
+<body>
+  <h1>Button Counter</h1>
+
+  <button id="count-button">按我計數</button>
+  <p>按下次數: <span id="click-count">0</span></p>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var countButton = document.getElementById('count-button');
+      var clickCount = document.getElementById('click-count');
+
+      var counter = 0;
+
+      countButton.addEventListener('click', function() {
+        counter++;
+        clickCount.innerText = counter.toString();
+      });
+    });
+  </script>
+</body>
+</html>

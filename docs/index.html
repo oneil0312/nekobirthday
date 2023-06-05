@@ -28,8 +28,32 @@
 		  <span id="seconds" class="digit-value">00</span>
 		</div>
 	  </div>
-	</section>
+	  
+	   <div id="warning-button">
+      <button id="count-button" class="warning-btn">Nothing Happen</button>
+      <p id="counter">按下次數: <span id="click-count">0</span></p>
+    </div>
+  </section>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var countButton = document.getElementById('count-button');
+  var clickCount = document.getElementById('click-count');
+
+  var counter = 0;
+
+  countButton.addEventListener('click', function() {
+    counter++;
+    clickCount.innerText = counter.toString();
+
+    if (counter === 200) {
+      alert("恭喜妳!!又離生日更進一步了!!");
+      counter = 0;
+      clickCount.innerText = counter.toString();
+    }
+  });
+});
+  </script>
 </body>
 </html>
