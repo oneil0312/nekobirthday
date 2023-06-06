@@ -26,6 +26,7 @@ header {
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
+cursor: url("C:\Users\User\Desktop\HB\HB\cat_mouse.png"), auto;
 
 @keyframes fireworks {
   0% {
