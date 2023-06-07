@@ -13,8 +13,11 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   transform: translateY(-50%);
-  background-color: #ffcc00;/* 與 header 的背景色相同 */
+  background-color: transparent; /* 設定背景顏色為透明 */
+  box-shadow: none; /* 移除陰影 */
+  border: none; /* 移除邊框 */
 }
+
 
 .left-gif {
   left: 400px;
@@ -512,3 +515,14 @@ img {
   width: 300px;
   height: auto;
 }
+
+
+.clickable {
+  cursor: pointer; /* 改變鼠標樣式為手指指示符 */
+  transition: transform 0.2s ease-in-out; /* 添加縮放效果 */
+}
+
+.clickable:hover {
+  transform: scale(1.1); /* 鼠標懸停時進行縮放 */
+}
+

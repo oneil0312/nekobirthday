@@ -62,7 +62,7 @@
     </div>
 	
 	<div id="warning-button">
-	  <button id="count-button" class="warning-btn">按下次數: <span id="click-count">0</span></button>
+	  <button id="count-button" class="warning-btn">沒用按鈕次數: <span id="click-count">0</span></button>
 	  
 	</div>
 	
@@ -73,11 +73,12 @@
 	  </div>
 	</div>
 	<p id="collected-count">已蒐集麥香紅茶數量: <span id="tea-count">0</span>/24</p>
+<img id="birthday-image" src="https://static.wikia.nocookie.net/minecraft_zh_gamepedia/images/0/03/Nether_portal_%28animated%29.png/revision/latest/scale-to-width-down/250?cb=20200830042435" alt="Birthday Image" style="display: none;">
 
 <script>
 
 // 倒數日期（2023/06/23）
-var countdownDate = new Date('2023-06-23').getTime();
+var countdownDate = new Date('2023-06-10').getTime();
 
 // 更新倒數計時器
 function updateCountdown() {
@@ -94,21 +95,88 @@ function updateCountdown() {
   document.getElementById('minutes').textContent = padZero(minutes);
   document.getElementById('seconds').textContent = padZero(seconds);
 
-  if (distance <= 0) {
+    if (distance <= 0) {
     // 倒數計時結束時的操作
     clearInterval(countdownInterval);
-    // 跳轉到生日慶祝頁面
-    window.location.href = 'HB.html';
-  }
+
+    // 檢查圖片是否已存在
+    var existingImage = document.getElementById('birthday-image');
+    {
+      // 創建圖片元素
+      var birthdayImage = document.createElement('img');
+      birthdayImage.src = 'https://staticg.sportskeeda.com/editor/2022/10/0114f-16655681610319-1920.jpg?w=840';
+      birthdayImage.alt = 'Birthday Image';
+      birthdayImage.id = 'birthday-image';
+      birthdayImage.classList.add('clickable'); // 添加可點擊樣式
+
+      // 將圖片元素添加到頁面中
+      document.body.appendChild(birthdayImage);
+
+      // 點擊圖片導引到HB.html頁面
+      birthdayImage.addEventListener('click', function() {
+        window.location.href = 'HB.html';
+      });
+    }
+  } else if (days < 2) {
+  // 新增貓咪 GIF 圖片
+  var catImage = document.createElement('img');
+  catImage.src = 'https://img.cgmodel.com/image/2020/0627/big/38830-614463665.gif'; // 替換成您自己的貓咪跑動的 GIF 圖片 URL
+  catImage.style.width = '150px'; // 調整圖片尺寸
+  catImage.style.height = 'auto';
+  catImage.style.position = 'fixed';
+  catImage.style.bottom = '20px';
+  catImage.style.left = '-100px'; // 設定起始位置在左邊界外
+  catImage.style.animation = 'run-animation 5s linear forwards'; // 設置貓咪跑動的動畫
+  catImage.style.background = 'transparent'; // 設定背景為透明
+  catImage.style.border = 'none'; // 設定邊框為無
+  catImage.style.boxShadow = 'none'; // 移除陰影
+
+  // 定義貓咪跑動的動畫
+  var catAnimation = `@keyframes run-animation {
+    0% { left: -100px; } /* 起始位置在左邊界外 */
+    100% { left: calc(100% + 100px); } /* 結束位置在右邊界外 */
+  }`;
+
+  // 創建 style 元素並添加動畫定義
+  var styleElement = document.createElement('style');
+  styleElement.appendChild(document.createTextNode(catAnimation));
+  document.head.appendChild(styleElement);
+
+  document.body.appendChild(catImage);
+
+  // 在動畫完成後刪除圖片
+  catImage.addEventListener('animationend', function() {
+    catImage.remove();
+  });
 }
 
-// 補零函數（小於10的數字前補零）
-function padZero(number) {
-  return (number < 10) ? '0' + number : number;
 }
+
+
+
+// 啟動倒數計時器
+var countdownInterval = setInterval(updateCountdown, 1000);
+
+// 補零函數
+function padZero(value) {
+  return value.toString().padStart(2, '0');
+}
+
+
+
+
+
 
 // 更新倒數計時器間隔（每秒更新一次）
 var countdownInterval = setInterval(updateCountdown, 1000);
+
+
+
+
+
+
+
+//麥香紅茶遊戲
   document.addEventListener('DOMContentLoaded', function() {
     var countButton = document.getElementById('count-button');
     var clickCount = document.getElementById('click-count');
@@ -127,7 +195,7 @@ var countdownInterval = setInterval(updateCountdown, 1000);
       counter++;
       clickCount.innerText = counter.toString();
 
-      if (counter === 200) {
+      if (counter === 100) {
         alert("恭喜妳!!又離生日更進一步了!!");
         counter = 0;
         clickCount.innerText = counter.toString();
@@ -151,10 +219,18 @@ var countdownInterval = setInterval(updateCountdown, 1000);
 				var image = document.createElement('img');
 				image.src = 'https://fs1.shop123.com.tw/300204/upload/harddisc/3002040_file_262309651948102021050419.jpg'; // 替換成實際的麥香紅茶圖片連結
 				image.alt = '麥香紅茶';
+				var closeButton = document.createElement('button');
+				closeButton.innerText = '關閉';
 
 				congratulations.appendChild(message);
 				congratulations.appendChild(image);
+				congratulations.appendChild(closeButton);
 				document.body.appendChild(congratulations);
+				
+				// 監聽關閉按鈕的點擊事件
+        closeButton.addEventListener('click', function() {
+          congratulations.remove();
+        });
 			  }
 			}
 		  });

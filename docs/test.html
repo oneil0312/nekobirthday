@@ -1,27 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Button Counter</title>
+  <title>氣球碰撞</title>
+  <style>
+    #balloon-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 60px;
+      height: 100px;
+      background-color: #ff6384;
+      border-radius: 50% 50% 60% 60%;
+    }
+  </style>
 </head>
 <body>
-  <h1>Button Counter</h1>
+  <div id="balloon-container"></div>
 
-  <button id="count-button">按我計數</button>
-  <p>按下次數: <span id="click-count">0</span></p>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var countButton = document.getElementById('count-button');
-      var clickCount = document.getElementById('click-count');
+    // 創建 Matter.Engine 物理引擎
+    var engine = Matter.Engine.create();
 
-      var counter = 0;
-
-      countButton.addEventListener('click', function() {
-        counter++;
-        clickCount.innerText = counter.toString();
-      });
+    // 設置 Matter.Render 渲染器
+    var render = Matter.Render.create({
+      element: document.getElementById('balloon-container'),
+      engine: engine,
+      options: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        background: 'transparent',
+        wireframes: false
+      }
     });
+
+    // 創建 Matter.World 物理世界
+    var world = engine.world;
+
+    // 創建氣球
+    function createBalloon(x, y) {
+      var balloon = Matter.Bodies.circle(x, y, 30, {
+        restitution: 1, // 彈性碰撞
+        render: {
+          fillStyle: '#ff6384',
+          strokeStyle: 'transparent'
+        }
+      });
+
+      Matter.World.add(world, balloon);
+    }
+
+    // 隨機生成氣球
+    function generateBalloons() {
+      var maxBalloons = 7; // 最大氣球數量
+
+      for (var i = 0; i < maxBalloons; i++) {
+        var x = Math.random() * window.innerWidth;
+        var y = Math.random() * window.innerHeight;
+
+        createBalloon(x, y);
+      }
+    }
+
+    // 啟動物理引擎
+    Matter.Engine.run(engine);
+
+    // 啟動渲染器
+    Matter.Render.run(render);
+
+    // 生成氣球
+    generateBalloons();
   </script>
 </body>
 </html>
