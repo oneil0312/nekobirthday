@@ -442,3 +442,73 @@ img {
     transform: translateY(0);
   }
 }
+
+
+/* 根據需要設置樣式 */
+
+.tea-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  
+}
+
+.tea-image {
+  position: absolute;  
+  opacity: 0.7;
+  transform: scale(0.03);  
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999; /* 添加這行 */
+  border: 2px solid #ccc; /* 調整邊框寬度和顏色 */
+  
+ 
+}
+
+.tea-image:hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#collected-tea {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#collected-count {
+  font-weight: bold;
+}
+.tea-image.collected {
+  display: none;
+}
+
+#collected-count {
+  font-size: 24px; /* 調整文字大小，這裡設定為 24 像素 */
+  font-family: Arial, sans-serif; /* 調整字體樣式，這裡設定為 Arial 字體，如果不存在，則使用 sans-serif 作為後備字體 */
+}
+
+.congratulations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+
+.congratulations p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.congratulations img {
+  width: 300px;
+  height: auto;
+}
