@@ -19,6 +19,16 @@ header {
 }
 
 
+.cake-image {
+  width: 100px; /* 調整圖片寬度 */
+  height: auto; /* 讓高度自適應比例 */
+  margin-left: 60%; /* 調整圖片與文字之間的間距 */
+  margin-top: -5.5%; /* 往上移動 */
+  vertical-align: middle; /* 垂直居中對齊 */
+  border: none; /* 移除邊框 */
+  box-shadow: none; /* 移除陰影 */
+}
+
 .left-gif {
   left: 400px;
   background-image: url(https://media1.giphy.com/media/bGCfsOjRhHbYhUHhOu/giphy.gif?cid=ecf05e47wycd6jjphz7y0h3vx8lcerzv4c7oa9h2txuat9qh&ep=v1_gifs_search&rid=giphy.gif&ct=g);
@@ -31,11 +41,78 @@ header {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #f3f3f3;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
+
+/* 添加呼吸动画 */
+@keyframes breathe-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 当计时器小于一天时应用呼吸动画 */
+#warning-message {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+#warning-message:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://pic.616pic.com/ys_img/00/13/65/NAk5TuN1KC.jpg'); /* 替换为您自己的慶祝生日元素图片的 URL */
+  background-repeat: repeat;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+#warning-message p {
+  margin: 0;
+}
+
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#warning-message.animated {
+  animation: pulse-animation 2s infinite;
+}
+
+
 
 h1 {
   font-family: 'Comic Sans MS', cursive;
@@ -71,12 +148,13 @@ header {
 }
 
 .about {
+	font-family: 'Comic Sans MS', cursive;
   margin-top: 50px;
   text-align: center;
-  font-size: 32px;
+  font-size: 40px;
   color: #f80;
   animation-name: fireworks;
-  animation-duration: 6s; /* 調整持續時間為6秒，包括停頓時間 */
+  animation-duration: 4s; /* 調整持續時間為6秒，包括停頓時間 */
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -318,13 +396,13 @@ img {
 
 .arrow-text {
   font-family: "Comic Sans MS", cursive;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
 }
 
 .arrow {
   position: absolute;
-  top: 50%;
+  top: 55%;
   right: 700px;
   transform: translateY(-50%);
   width: 80px;
@@ -339,9 +417,10 @@ img {
   position: flex;
   bottom: 20px;
   right: 20px;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
   font-family: "Comic Sans MS", cursive;
+  margin-top:-3.5%;
   color:red;
   text-align: right;
 }
@@ -403,23 +482,21 @@ img {
 }
 
 #basketball-container {
-  position: absolute;
+  position: relative;
   top: 13%;
   left: calc(55% + 200px); /* 調整水平位置，根據需要進行調整 */
   transform: translate(-50%, -50%);
   width: 100px;
   height: 100px;
+  z-index: 1;
 }
 
-
-#basketball-container {
-  z-index: 999;
-}
 
 .basketball {
   background: transparent;
   border: none;
   box-shadow: none;
+  margin-top:-40%;
   width: 100%;
   height: 100%;
   animation: basketball-animation 0.8s cubic-bezier(0.6, 0.05, 0.2, 1.1) infinite;
@@ -525,4 +602,5 @@ img {
 .clickable:hover {
   transform: scale(1.1); /* 鼠標懸停時進行縮放 */
 }
+
 

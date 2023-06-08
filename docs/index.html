@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>A_XIN生日倒數計時器</title>
-  <link rel="stylesheet" href="styles.css">
-  
+  <link rel="stylesheet" href="styles.css">  
 </head>
 <body>
 	<section id="countdown">
@@ -31,8 +29,13 @@
 		  <span class="digit-label">秒</span>
 		  <span id="seconds" class="digit-value">00</span>
 		</div>
-	  </div>
+	  </div>  
 	  
+		<div id="warning-message" class="animated">
+		  <p>剩不到一天囉!!。</p>
+		</div>
+
+
 	  <div class="tea-images">
       <!-- 麥香紅茶的圖片 -->
       <img src="https://img.boutirapp.com/09V-YlJMvLWvfb9LvMP7gwlFh9477A8m-cSWhscFdzznPA84EJtnMXvZdL6D01HtmgRiYiLw1JjVEbX4tbykJa=slg" alt="麥香紅茶1" class="tea-image">
@@ -74,6 +77,10 @@
 	</div>
 	<p id="collected-count">已蒐集麥香紅茶數量: <span id="tea-count">0</span>/24</p>
 <img id="birthday-image" src="https://static.wikia.nocookie.net/minecraft_zh_gamepedia/images/0/03/Nether_portal_%28animated%29.png/revision/latest/scale-to-width-down/250?cb=20200830042435" alt="Birthday Image" style="display: none;">
+</section>
+
+
+
 
 <script>
 
@@ -134,7 +141,7 @@ function updateCountdown() {
   // 定義貓咪跑動的動畫
   var catAnimation = `@keyframes run-animation {
     0% { left: -100px; } /* 起始位置在左邊界外 */
-    100% { left: calc(100% + 100px); } /* 結束位置在右邊界外 */
+    100% { left: calc(100% ); } /* 結束位置在右邊界外 */
   }`;
 
   // 創建 style 元素並添加動畫定義
@@ -148,10 +155,14 @@ function updateCountdown() {
   catImage.addEventListener('animationend', function() {
     catImage.remove();
   });
+  }if (days < 1) {
+  // 隐藏警告信息
+  document.getElementById('warning-message').style.display = 'block';
+} else {
+  // 隐藏警告信息
+  document.getElementById('warning-message').style.display = 'none';
 }
-
-}
-
+	}
 
 
 // 啟動倒數計時器
@@ -161,14 +172,6 @@ var countdownInterval = setInterval(updateCountdown, 1000);
 function padZero(value) {
   return value.toString().padStart(2, '0');
 }
-
-
-
-
-
-
-// 更新倒數計時器間隔（每秒更新一次）
-var countdownInterval = setInterval(updateCountdown, 1000);
 
 
 
@@ -243,6 +246,14 @@ var countdownInterval = setInterval(updateCountdown, 1000);
       var imageHeight = getRandomSize(minImageSize, maxImageSize);
       var left = getRandomPosition(0, bodyWidth - imageWidth);
       var top = getRandomPosition(0, bodyHeight - imageHeight);
+	  
+	  // 檢查是否超出邊界，若超出則調整位置
+		  if (left + imageWidth > bodyWidth) {
+			left = bodyWidth - imageWidth;
+		  }
+		  if (top + imageHeight > bodyHeight) {
+			top = bodyHeight - imageHeight;
+		  }
 
       image.style.width = imageWidth + 'px';
       image.style.height = imageHeight + 'px';
@@ -253,13 +264,22 @@ var countdownInterval = setInterval(updateCountdown, 1000);
     }
 
     function getRandomPosition(min, max) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
+      return Math.floor((Math.random() * (max - min + 1) + min));
     }
 
     function getRandomSize(min, max) {
       return Math.floor(Math.random() * (max - min + 1) + min);
     }
-  });
+  }); 
+  
+  
+  
+  
+
+
+
+
+
 </script>
 </body>
 </html>
