@@ -255,7 +255,7 @@ header {
 font-family: 'Comic Sans MS', cursive;
   margin-top: 50px;
   text-align: center;
-  font-size: 40px;
+  font-size: 60px;
   color: #f80;
   animation-name: fireworks;
   animation-duration: 4s; /* 調整持續時間為6秒，包括停頓時間 */
