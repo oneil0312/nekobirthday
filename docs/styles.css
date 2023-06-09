@@ -2,14 +2,16 @@
 
 header {
   position: relative;
+  background-color: #ffcc00;
+  padding: 20px;
 }
 
 .left-gif,
 .right-gif {
   position: absolute;
-  top: 50%;
-  width: 100px;
-  height: 100px;
+  top: 54%;
+  width: 150px;
+  height: 150px;
   background-size: cover;
   background-repeat: no-repeat;
   transform: translateY(-50%);
@@ -22,20 +24,21 @@ header {
 .cake-image {
   width: 100px; /* 調整圖片寬度 */
   height: auto; /* 讓高度自適應比例 */
-  margin-left: 60%; /* 調整圖片與文字之間的間距 */
-  margin-top: -5.5%; /* 往上移動 */
-  vertical-align: middle; /* 垂直居中對齊 */
+  margin-left: auto; /* 自動對齊左右邊距 */
+  margin-right: auto;
+  margin-top: 0%; /* 往上移動 */
+  display: block; /* 讓圖片成為區塊元素 */
   border: none; /* 移除邊框 */
   box-shadow: none; /* 移除陰影 */
 }
 
 .left-gif {
-  left: 400px;
+  left: 442px;
   background-image: url(https://media1.giphy.com/media/bGCfsOjRhHbYhUHhOu/giphy.gif?cid=ecf05e47wycd6jjphz7y0h3vx8lcerzv4c7oa9h2txuat9qh&ep=v1_gifs_search&rid=giphy.gif&ct=g);
 }
 
 .right-gif {
-  right: 400px;
+  right: 442px;
   background-image: url(https://media1.giphy.com/media/bGCfsOjRhHbYhUHhOu/giphy.gif?cid=ecf05e47wycd6jjphz7y0h3vx8lcerzv4c7oa9h2txuat9qh&ep=v1_gifs_search&rid=giphy.gif&ct=g);
 }
 
@@ -118,7 +121,7 @@ h1 {
   font-family: 'Comic Sans MS', cursive;
   font-size: 45px;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 
@@ -126,8 +129,8 @@ h1 {
 h2 {
   text-align: center;
 }
-
 header {
+  position: relative;
   background-color: #ffcc00;
   padding: 20px;
 }
@@ -135,20 +138,24 @@ header {
 .game-button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #ff6699;
+  background-color: rgba(255, 102, 153, 0.1); /* 设置透明度 */
   color: #fff;
   text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border: none; /* 去掉外边框 */
+  border-radius: none;
+  font-size: 10px;
   font-weight: bold;
+  margin-right: 90%; 
 }
+
+
 
 .game-button:hover {
   background-color: #e64d8f;
 }
 
 .about {
-	font-family: 'Comic Sans MS', cursive;
+font-family: 'Comic Sans MS', cursive;
   margin-top: 50px;
   text-align: center;
   font-size: 40px;
@@ -177,29 +184,6 @@ header {
   }
 }
 
-nav {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-nav ul li {
-  display: inline;
-  margin-right: 10px;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
 section {
   padding: 20px;
   margin-bottom: 20px;
@@ -211,10 +195,33 @@ section h2 {
   color: #ffcc00;
 }
 
+
+.section-divider::before {
+  content: "";
+  display: block;
+  width: 1px; /* 分割线宽度 */
+  height: 100%; /* 分割线高度，根据section的高度进行调整 */
+  background-color: #000; /* 分割线颜色 */
+  position: absolute;
+  left: 0; /* 左侧分割线位置 */
+}
+
+.section-divider::after {
+  content: "";
+  display: block;
+  width: 1px; /* 分割线宽度 */
+  height: 100%; /* 分割线高度，根据section的高度进行调整 */
+  background-color: #000; /* 分割线颜色 */
+  position: absolute;
+  right: 0; /* 右侧分割线位置 */
+}
+
+
 section#gallery {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f3f3f3; /* 添加背景色块 */
 }
 
 section#gallery img {
@@ -231,6 +238,9 @@ section#countdown h2 {
   font-size: 24px;
   color: #333;
 }
+
+
+
 
 #digital-clock {
   display: flex;
@@ -279,7 +289,7 @@ footer {
 }
 .birthday-container {
   text-align: center;
-  padding: 20px;
+  padding: 0px;
 }
 
 #birthday-button {
@@ -390,9 +400,12 @@ img {
 }
 
 .arrow-container {
-  position: relative;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;  
 }
+
 
 .arrow-text {
   font-family: "Comic Sans MS", cursive;
@@ -401,10 +414,8 @@ img {
 }
 
 .arrow {
-  position: absolute;
-  top: 55%;
-  right: 700px;
-  transform: translateY(-50%);
+  position: relative;
+  margin-left: 10px; /* 调整箭头和文本之间的间距 */
   width: 80px;
   height: 80px;
   background-color: pink;
@@ -416,11 +427,12 @@ img {
 .bottom-text {
   position: flex;
   bottom: 20px;
-  right: 20px;
+  right: 200px;
   font-size: 30px;
   font-weight: bold;
   font-family: "Comic Sans MS", cursive;
-  margin-top:-3.5%;
+  margin-top:-4%;
+  margin-left:80%;
   color:red;
   text-align: right;
 }
@@ -584,6 +596,7 @@ img {
 .congratulations p {
   font-size: 24px;
   font-weight: bold;
+
   color: #fff;
   margin-bottom: 16px;
 }
