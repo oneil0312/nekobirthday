@@ -246,6 +246,26 @@ header {
 }
 
 
+.omen-cat-right {
+  position: relative;
+  transform: translateX(150%); /* 将图片向右移动 50% */
+  width: 200px; /* 设置图片宽度为 200px */
+  height: auto; /* 保持原始高宽比 */
+  border: none; /* 移除图片边框 */
+  box-shadow: none; /* 移除图片阴影效果 */
+  margin-top: -9%;
+}
+.omen-cat-left {
+  position: relative;
+  transform: translateX(-150%); /* 将图片向左移动 50% */
+  width: 200px; /* 设置图片宽度为 200px */
+  height: auto; /* 保持原始高宽比 */
+  border: none; /* 移除图片边框 */
+  box-shadow: none; /* 移除图片阴影效果 */
+  margin-top: -11%;
+}
+
+
 
 .game-button:hover {
   background-color: #e64d8f;
