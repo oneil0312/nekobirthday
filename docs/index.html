@@ -76,6 +76,12 @@
 		<div class="red-circle"></div>
 	  </div>
 	</div>
+		<img src="causon_bread.png" alt="causon_bread" class="causon_bread" onclick="playSound()">
+		<audio id="clickSound">
+		  <source src="causon.mp3" type="audio/mpeg">
+		</audio>
+		<img src="causon.png" alt="causon" class="causon" id="causonImage">
+	
 	<p id="collected-count">已蒐集麥香紅茶數量: <span id="tea-count">0</span>/24</p>
 <img id="birthday-image" src="https://static.wikia.nocookie.net/minecraft_zh_gamepedia/images/0/03/Nether_portal_%28animated%29.png/revision/latest/scale-to-width-down/250?cb=20200830042435" alt="Birthday Image" style="display: none;">
 </section>
@@ -84,6 +90,18 @@
 
 
 <script>
+
+function playSound() {
+  var audio = document.getElementById("clickSound");
+  audio.play();
+
+  var causonImage = document.getElementById("causonImage");
+  causonImage.classList.add("show");
+
+  setTimeout(function() {
+    causonImage.classList.remove("show");
+  }, 1000); // 1秒后回归透明
+}
 
 // 倒數日期（2023/06/23）
 var countdownDate = new Date('2023-06-23').getTime();
@@ -181,98 +199,98 @@ function padZero(value) {
 
 
 //麥香紅茶遊戲
-  document.addEventListener('DOMContentLoaded', function() {
-    var countButton = document.getElementById('count-button');
-    var clickCount = document.getElementById('click-count');
-    var teaImages = document.getElementsByClassName('tea-image');
-    var collectedCount = document.getElementById('tea-count');
-    var totalTeaCount = 24;
-    var currentCollectedCount = 0;
-    var counter = 0;
-    var bodyWidth = document.body.offsetWidth;
-    var bodyHeight = document.body.offsetHeight;
-    var minImageSize = 50; // 最小圖片尺寸
-    var maxImageSize = 100; // 最大圖片尺寸
-    var positions = []; // 存儲已佈置位置的數組
+	document.addEventListener('DOMContentLoaded', function() {
+	  var countButton = document.getElementById('count-button');
+	  var clickCount = document.getElementById('click-count');
+	  var teaImages = document.getElementsByClassName('tea-image');
+	  var collectedCount = document.getElementById('tea-count');
+	  var totalTeaCount = 24;
+	  var currentCollectedCount = 0;
+	  var counter = 0;
+	  var bodyWidth = document.body.offsetWidth;
+	  var bodyHeight = document.body.offsetHeight;
+	  var minImageSize = 50; // 最小圖片尺寸
+	  var maxImageSize = 100; // 最大圖片尺寸
+	  var positions = []; // 存儲已佈置位置的數組
 
-    countButton.addEventListener('click', function() {
-      counter++;
-      clickCount.innerText = counter.toString();
+	  countButton.addEventListener('click', function() {
+		counter++;
+		clickCount.innerText = counter.toString();
 
-      if (counter === 100) {
-        alert("恭喜妳!!又離生日更進一步了!!");
-        counter = 0;
-        clickCount.innerText = counter.toString();
-      }
-    });
-
-    // 監聽麥香紅茶圖片的點擊事件
-		for (var i = 0; i < teaImages.length; i++) {
-		  teaImages[i].addEventListener('click', function() {
-			if (!this.classList.contains('collected')) {
-			  this.classList.add('collected');
-			  currentCollectedCount++;
-			  collectedCount.innerText = currentCollectedCount;
-
-			  if (currentCollectedCount === totalTeaCount) {
-				alert('恭喜你已蒐集完所有麥香紅茶！');
-				var congratulations = document.createElement('div');
-				congratulations.classList.add('congratulations');
-				var message = document.createElement('p');
-				message.innerText = '恭喜你獲得一箱麥香紅茶(請截圖)！';
-				var image = document.createElement('img');
-				image.src = 'https://fs1.shop123.com.tw/300204/upload/harddisc/3002040_file_262309651948102021050419.jpg'; // 替換成實際的麥香紅茶圖片連結
-				image.alt = '麥香紅茶';
-				var closeButton = document.createElement('button');
-				closeButton.innerText = '關閉';
-
-				congratulations.appendChild(message);
-				congratulations.appendChild(image);
-				congratulations.appendChild(closeButton);
-				document.body.appendChild(congratulations);
-				
-				// 監聽關閉按鈕的點擊事件
-        closeButton.addEventListener('click', function() {
-          congratulations.remove();
-        });
-			  }
-			}
-		  });
+		if (counter === 100) {
+		  alert("恭喜妳!!又離生日更進一步了!!");
+		  counter = 0;
+		  clickCount.innerText = counter.toString();
 		}
+	  });
 
-    // 隨機生成圖片大小和位置
-    for (var i = 0; i < teaImages.length; i++) {
-      var image = teaImages[i];
-      var imageWidth = getRandomSize(minImageSize, maxImageSize);
-      var imageHeight = getRandomSize(minImageSize, maxImageSize);
-      var left = getRandomPosition(0, bodyWidth - imageWidth);
-      var top = getRandomPosition(0, bodyHeight - imageHeight);
-	  
-	  // 檢查是否超出邊界，若超出則調整位置
-		  if (left + imageWidth > bodyWidth) {
-			left = bodyWidth - imageWidth;
+	// 監聽麥香紅茶圖片的點擊事件
+	  for (var i = 0; i < teaImages.length; i++) {		
+		teaImages[i].addEventListener('click', function() {
+		  if (!this.classList.contains('collected')) {
+			this.classList.add('collected');
+			currentCollectedCount++;
+			collectedCount.innerText = currentCollectedCount;
+
+			if (currentCollectedCount === totalTeaCount) {
+			  alert('恭喜你已蒐集完所有麥香紅茶！');
+			  var congratulations = document.createElement('div');
+			  congratulations.classList.add('congratulations');
+			  var message = document.createElement('p');
+			  message.innerText = '恭喜你獲得一箱麥香紅茶(請截圖)！';
+			  var image = document.createElement('img');
+			  image.src = 'https://fs1.shop123.com.tw/300204/upload/harddisc/3002040_file_262309651948102021050419.jpg'; // 替換成實際的麥香紅茶圖片連結
+			  image.alt = '麥香紅茶';
+			  var closeButton = document.createElement('button');
+			  closeButton.innerText = '關閉';
+
+			  congratulations.appendChild(message);
+			  congratulations.appendChild(image);
+			  congratulations.appendChild(closeButton);
+			  document.body.appendChild(congratulations);
+
+			  // 監聽關閉按鈕的點擊事件
+			  closeButton.addEventListener('click', function() {
+				congratulations.remove();
+			  });
+			}
 		  }
-		  if (top + imageHeight > bodyHeight) {
-			top = bodyHeight - imageHeight;
+		});
+	  }
+
+
+		 // 隨機生成圖片大小和位置
+		  for (var i = 0; i < teaImages.length; i++) {
+			var image = teaImages[i];
+			var imageWidth = getRandomSize(minImageSize, maxImageSize);
+			var imageHeight = getRandomSize(minImageSize, maxImageSize);
+			var left = getRandomPosition(0, bodyWidth - imageWidth);
+			var top = getRandomPosition(0, bodyHeight - imageHeight);
+
+			// 檢查是否超出邊界，若超出則調整位置
+			if (left + imageWidth > bodyWidth) {
+			  left = bodyWidth - imageWidth;
+			}
+			if (top + imageHeight > bodyHeight) {
+			  top = bodyHeight - imageHeight;
+			}
+
+			image.style.width = imageWidth + 'px';
+			image.style.height = imageHeight + 'px';
+			image.style.left = left + 'px';
+			image.style.top = top + 'px';
+
+			positions.push({ left: left, top: top, width: imageWidth, height: imageHeight });
 		  }
 
-      image.style.width = imageWidth + 'px';
-      image.style.height = imageHeight + 'px';
-      image.style.left = left + 'px';
-      image.style.top = top + 'px';
+		  function getRandomPosition(min, max) {
+			return Math.floor(1.5 * (Math.random() * (max - min + 1) + min));
+		  }
 
-      positions.push({ left: left, top: top, width: imageWidth, height: imageHeight });
-    }
-
-    function getRandomPosition(min, max) {
-      return Math.floor(1.5*(Math.random() * (max - min + 1) + min));
-    }
-
-    function getRandomSize(min, max) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    }
-  }); 
-  
+		  function getRandomSize(min, max) {
+			return Math.floor(Math.random() * (max - min + 1) + min);
+		  }
+		});
   
   
   
