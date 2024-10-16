@@ -1,771 +1,170 @@
-/* 全局樣式 */
-
-header {
-  position: relative;
-  background-color: #ffcc00;
-  padding: 20px;
-}
-
-.left-gif,
-.right-gif {
-  position: absolute;
-  top: 54%;
-  width: 150px;
-  height: 150px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  transform: translateY(-50%);
-  background-color: transparent; /* 設定背景顏色為透明 */
-  box-shadow: none; /* 移除陰影 */
-  border: none; /* 移除邊框 */
-}
-
-
-.cake-image {
-  width: 100px; /* 調整圖片寬度 */
-  height: auto; /* 讓高度自適應比例 */
-  margin-left: auto; /* 自動對齊左右邊距 */
-  margin-right: auto;
-  margin-top: 0%; /* 往上移動 */
-  display: block; /* 讓圖片成為區塊元素 */
-  border: none; /* 移除邊框 */
-  box-shadow: none; /* 移除陰影 */
-}
-
-.left-gif {
-  left: 442px;
-  background-image: url(https://media1.giphy.com/media/bGCfsOjRhHbYhUHhOu/giphy.gif?cid=ecf05e47wycd6jjphz7y0h3vx8lcerzv4c7oa9h2txuat9qh&ep=v1_gifs_search&rid=giphy.gif&ct=g);
-}
-
-.right-gif {
-  right: 442px;
-  background-image: url(https://media1.giphy.com/media/bGCfsOjRhHbYhUHhOu/giphy.gif?cid=ecf05e47wycd6jjphz7y0h3vx8lcerzv4c7oa9h2txuat9qh&ep=v1_gifs_search&rid=giphy.gif&ct=g);
-}
-
+/* 設置整體樣式 */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f3f3f3;
+  background-color: #f3f4f6;
+  text-align: center;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
 }
 
-.left-section h2,
-.right-section h2 {
-  color: #ffcc00;
-  margin-bott
-om: 10px;
+/* 倒數計時區域 */
+#countdown {
+  margin: 50px auto;
 }
 
-.about-container {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.left-section,
-.right-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* 將內容置於垂直和水平方向的中間 */
-  flex: 1; /* 彈性增長以填滿剩餘空間 */
-}
-
-.image-container {
-  perspective: 1000px;
-  position: relative;
-  width: 200px;
-  height: 200px;
-}
-
-.image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease;
-  transform: scale(1); /* 初始縮放比例為1 */
-}
-
-.front,
-.back {	
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
-
-.front {
-  transform: rotateY(0deg);
-}
-
-.back {
-  transform: rotateY(180deg);
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  color: black;
-  text-align: center;
-  padding: 10px; /* 增加文字區塊的內邊距 */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 增加文字區塊的陰影效果 */
-}
-
-.neko-image {
-  transition: transform 0.5s ease; /* 添加過渡效果 */
-}
-
-.neko-image:hover {
-  transform: rotateY(180deg) scale(1.2); /* 滑鼠懸停時的變化，翻轉且放大 */
-}
-
-.back span.highlight {
-  font-size: 24px;
-  font-weight: bold;
-  color: #5E2824;
-  margin-bottom: 10px;
-  writing-mode: vertical-rl; /* 設置文字方向為從右到左的垂直方向 */    
-}
-
-
-
-.image-container:hover .image-wrapper {
-  transform: rotateY(180deg) scale(1.6);;
-}
-
-
-section {
-  padding: 20px;
-  margin-bottom: 20px;
-  background-color: #fff;
-  width: 100%; /* 將寬度設置為100% */
-  margin-left: 0; /* 左邊距設置為0 */
-  margin-right: 0; /* 右邊距設置為0 */
-}
-
-
-/* 添加呼吸动画 */
-@keyframes breathe-animation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* 当计时器小于一天时应用呼吸动画 */
-#warning-message {
-  background-color: #ff0000;
-  color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-#warning-message:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://pic.616pic.com/ys_img/00/13/65/NAk5TuN1KC.jpg'); /* 替换为您自己的慶祝生日元素图片的 URL */
-  background-repeat: repeat;
-  pointer-events: none;
-  opacity: 0.5;
-  z-index: -1;
-}
-
-#warning-message p {
-  margin: 0;
-}
-
-@keyframes pulse-animation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.3);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-#warning-message.animated {
-  animation: pulse-animation 2s infinite;
-}
-
-
-
-h1 {
-  font-family: 'Comic Sans MS', cursive;
-  font-size: 45px;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  text-align: center;
-}
-
-
-h2 {
-  text-align: center;
-}
-header {
-  position: relative;
-  background-color: #ffcc00;
-  padding: 20px;
-}
-
-.game-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: rgba(255, 102, 153, 0.1); /* 设置透明度 */
-  color: #fff;
-  text-decoration: none;
-  border: none; /* 去掉外边框 */
-  border-radius: none;
-  font-size: 10px;
-  font-weight: bold;
-  margin-right: 90%; 
-}
-
-
-.omen-cat-right {
-  position: relative;
-  transform: translateX(150%); /* 将图片向右移动 50% */
-  width: 200px; /* 设置图片宽度为 200px */
-  height: auto; /* 保持原始高宽比 */
-  border: none; /* 移除图片边框 */
-  box-shadow: none; /* 移除图片阴影效果 */
-  margin-top: -9%;
-}
-.omen-cat-left {
-  position: relative;
-  transform: translateX(-150%); /* 将图片向左移动 50% */
-  width: 200px; /* 设置图片宽度为 200px */
-  height: auto; /* 保持原始高宽比 */
-  border: none; /* 移除图片边框 */
-  box-shadow: none; /* 移除图片阴影效果 */
-  margin-top: -11%;
-}
-
-
-
-.game-button:hover {
-  background-color: #e64d8f;
-}
-
-.about {
-font-family: 'Comic Sans MS', cursive;
-  margin-top: 50px;
-  text-align: center;
-  font-size: 60px;
-  color: #f80;
-  animation-name: fireworks;
-  animation-duration: 4s; /* 調整持續時間為6秒，包括停頓時間 */
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@keyframes fireworks {
-  0% {
-    opacity: 0;
-    transform: translateY(0) rotate(0);
-  }
-  10% {
-    opacity: 1;
-  }
-  30% {
-    opacity: 0.5;
-    transform: translateY(-30px) rotate(360deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-30px) rotate(360deg);
-  }
-}
-
-
-
-section h2 {
-  text-align: center;
-  color: #ffcc00;
-}
-
-
-.section-divider::before {
-  content: "";
-  display: block;
-  width: 1px; /* 分割线宽度 */
-  height: 100%; /* 分割线高度，根据section的高度进行调整 */
-  background-color: #000; /* 分割线颜色 */
-  position: absolute;
-  left: 0; /* 左侧分割线位置 */
-}
-
-.section-divider::after {
-  content: "";
-  display: block;
-  width: 1px; /* 分割线宽度 */
-  height: 100%; /* 分割线高度，根据section的高度进行调整 */
-  background-color: #000; /* 分割线颜色 */
-  position: absolute;
-  right: 0; /* 右侧分割线位置 */
-}
-
-
-section#gallery {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f3f3f3; /* 添加背景色块 */
-}
-
-section#gallery img {
-  width: 30%;
-  margin: 0 10px;
-}
-
-section#countdown {
-  text-align: center;
-  padding: 50px;
-}
-
-section#countdown h2 {
-  font-size: 24px;
-  color: #333;
-}
-
-
-
-
-#digital-clock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 48px;
-  margin-top: 30px;
-}
-
+/* 時間顯示區塊樣式 */
 .digit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: inline-block;
+  margin: 10px;
+  font-size: 2rem;
 }
 
 .digit-label {
-  font-size: 18px;
+  display: block;
+  font-size: 1rem;
+  color: #555;
 }
 
 .digit-value {
-  font-size: 48px;
-  color: skyblue;
+  font-size: 3rem;
+  color: #ff4081;
 }
 
-/* 調整間隔 */
-.digit:not(:last-child) {
-  margin-right: 10px;
-}
-
-#timer {
-  font-size: 36px;
-  color: #00CACA;
-  margin-top: 20px;
-}
-img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-}
-.birthday-container {
-  text-align: center;
-  padding: 0px;
-}
-
-#birthday-button {
-  padding: 10px 20px;
-  background-color: #ffcc00;
-  color: #fff;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-#birthday-message {
-  display: none;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-@keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.animated {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.animated-text {
-  animation-name: fadeIn;
-  animation-duration: 2s;
-}
-
-.causon{
-  position: relative;
-  transform: translateX(240%); 
-  width: 100px; /* 设置图片宽度为 100px */
-  height: auto; /* 保持原始高宽比 */
-  border: none; /* 移除图片边框 */
-  box-shadow: none; /* 移除图片阴影效果 */   
-  margin-top:-5%;
-  transition: opacity 0.3s, transform 0.3s;
-  opacity: 0;
-}
-
-
-.causon.show {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-
-
-
-.causon_bread{
-  position: relative;
-  transform: translateX(-230%); 
-  width: 100px; /* 设置图片宽度为 200px */
-  height: auto; /* 保持原始高宽比 */
-  border: none; /* 移除图片边框 */
-  box-shadow: none; /* 移除图片阴影效果 */ 
-  cursor: pointer; /* 添加光标样式，表示可以点击 */
-  transition: opacity 0.3s; /* 添加过渡效果，使样式变化更平滑 */
-}
-
-.causon_bread:active {
-	opacity: 0.8; /* 点击时的透明度 */
-}
-
-
-
-
-.volleyball {
-  position: absolute;
-  top: 50%; /* 設定初始位置在容器底部 */
-  left: -50px; /* 初始位置在左邊屏幕外 */
-  width: 50px;
-  height: 50px;
-  background-image: url(https://mikasasports.co.jp/e/wp-content/uploads/2018/11/V200W_2.png); /* 替換為實際的排球圖片路徑 */
-  background-size: cover;
-  background-repeat: no-repeat;
-  animation: volleyballAnimation 4s cubic-bezier(0.42, 0, 0.58, 1) infinite; /* 設定動畫效果 */
-}
-
-@keyframes volleyballAnimation {
-  0% {
-    left: -50px; /* 初始位置在左邊屏幕外 */
-    transform: translateY(0); /* 初始時不偏移垂直位置 */
-  }
-  50% {
-    left: calc(50% - 25px); /* 中間位置在容器的水平中心 */
-    transform: translateY(-200px); /* 偏移垂直位置向上 200px */
-  }
-  100% {
-    left: calc(100% + 50px); /* 最終位置在右邊屏幕外 */
-    transform: translateY(0); /* 最終時不偏移垂直位置，回到初始位置 */
-  }
-}
-
-img {
-  border: 2px solid #000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transform: perspective(800px) rotateX(10deg) rotateY(10deg);
-}
-
-
-.warning-btn {
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  font-size: 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s;
-}
-
-.warning-btn:active {
-  transform: translateY(2px);
-}
-
-#warning-button {
-  margin-top: 20px;
-}
-
-#counter {
-  margin-top: 10px;
-  font-size: 16px;
-}
-
-.arrow-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: left;  
-}
-
-
-.arrow-text {
-  font-family: "Comic Sans MS", cursive;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.arrow {
-  position: relative;
-  margin-left: 10px; /* 调整箭头和文本之间的间距 */
-  width: 80px;
-  height: 80px;
-  background-color: pink;
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.bottom-text {
-  position: flex;
-  bottom: 20px;
-  right: 200px;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: "Comic Sans MS", cursive;
-  margin-top:-4%;
-  margin-left:80%;
-  color:red;
-  text-align: right;
-}
-
-
-
-.box {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  animation-name: bounce;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-20px);
-  }
-  60% {
-    transform: translateY(-10px);
-  }
-}
-
+/* 日曆圖片樣式，置中 */
 .calendar-container {
-  position: relative;
-  display: inline-block;
+  position: relative; /* 為了使用絕對定位 */
+  display: inline-block; /* 讓圖片和圓圈共用同一容器 */
 }
 
-.red-circle {
-  position: absolute;  
-  border-radius: 50%;
-  border: 2px solid red;
-  background-color: transparent;
+.calendar-image {
+  display: block;
+  margin: 20px auto;  /* 自動水平置中 */
+  width: 600px;       /* 將寬度增大為600px */
+  height: auto;       /* 自動調整高度 */
 }
 
-@media (max-width: 768px) {
-  .red-circle {
-    top: -120px;
-  right: -77px;
-  width: 25px;
-  height: 25px;
-    /* 其他樣式設置 */
-  }
+/* 紅色圈圈樣式 */
+.date-circle {
+  position: absolute;
+  top: 56.5%; /* 調整圈圈的垂直位置 */
+  left: 17%; /* 調整圈圈的水平位置 */
+  transform: translate(-50%, -50%); /* 使圓圈居中於圖片 */
+  width: 40px; /* 圈圈的寬度 */
+  height: 40px; /* 圈圈的高度 */
+  border: 4px solid red; /* 圈圈的顏色和寬度 */
+  border-radius: 50%; /* 使邊角圓滑，形成圓形 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 添加陰影 */
 }
 
-@media (min-width: 769px) {
-  .red-circle {top: -179px;
-  right: -117px;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  border: 2px solid red;
-  background-color: transparent; 
-  }
+/* 麵包圖片樣式，左下角 */
+.causon_bread {
+  position: fixed;    /* 固定在視窗中的一個位置 */
+  bottom: 10px;       /* 距離視窗底部10px */
+  left: 10px;         /* 距離視窗左側10px */
+  width: 80px;        /* 調整為較小尺寸 */
+  height: auto;       /* 自動調整高度 */
+  cursor: pointer;    /* 添加點擊效果 */
+  transition: transform 0.3s ease; /* 添加過渡效果 */
 }
 
-#basketball-container {
-  position: relative;
-  top: 13%;
-  left: calc(55% + 200px); /* 調整水平位置，根據需要進行調整 */
-  transform: translate(-50%, -50%);
+.causon_bread:hover {
+  transform: scale(1.1); /* 懸停時放大 */
+}
+
+/* causon圖片樣式 */
+.causon {
   width: 100px;
-  height: 100px;
-  z-index: 1;
-}
-
-
-.basketball {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  margin-top:-40%;
-  width: 100%;
-  height: 100%;
-  animation: basketball-animation 0.8s cubic-bezier(0.6, 0.05, 0.2, 1.1) infinite;
-}
-
-@keyframes basketball-animation {
-  0% {
-    transform: translateY(0);
-  }
-  20% {
-    transform: translateY(-13px);
-  }
-  40% {
-    transform: translateY(-23px);
-  }
-  60% {
-    transform: translateY(-33px);
-  }
-  80% {
-    transform: translateY(-23px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-
-/* 根據需要設置樣式 */
-
-.tea-images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-  
-}
-
-.tea-image {
-  position: absolute;  
-  opacity: 0.7;
-  transform: scale(0.03);  
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 999; /* 添加這行 */
-  border: 2px solid #ccc; /* 調整邊框寬度和顏色 */
-  
- 
-}
-
-.tea-image:hover {
-  opacity: 1;
-  transform: scale(1);
-}
-
-#collected-tea {
-  text-align: center;
-  margin-top: 20px;
-}
-
-#collected-count {
-  font-weight: bold;
-  margin-top:-3%;
-}
-.tea-image.collected {
-  display: none;
-}
-
-#collected-count {
-  font-size: 24px; /* 調整文字大小，這裡設定為 24 像素 */
-  font-family: Arial, sans-serif; /* 調整字體樣式，這裡設定為 Arial 字體，如果不存在，則使用 sans-serif 作為後備字體 */
-}
-
-.congratulations {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 9999;
-}
-
-.congratulations p {
-  font-size: 24px;
-  font-weight: bold;
-
-  color: #fff;
-  margin-bottom: 16px;
-}
-
-.congratulations img {
-  width: 300px;
   height: auto;
 }
 
-
-.clickable {
-  cursor: pointer; /* 改變鼠標樣式為手指指示符 */
-  transition: transform 0.2s ease-in-out; /* 添加縮放效果 */
+/* CSS 動畫效果 */
+@keyframes slide-in-out {
+  0% {
+    transform: translateX(100%); /* 從右側開始 */
+    opacity: 0; /* 初始不透明度 */
+  }
+  50% {
+    transform: translateX(0); /* 到達中間 */
+    opacity: 1; /* 中間時全不透明 */
+  }
+  100% {
+    transform: translateX(100%); /* 再次移動到右側，消失 */
+    opacity: 0; /* 最後不透明度為0 */
+  }
 }
 
-.clickable:hover {
-  transform: scale(1.1); /* 鼠標懸停時進行縮放 */
+#causonImage.animate {
+  position: fixed; /* 固定在螢幕上 */
+  top: 50%;  /* 垂直居中 */
+  left: 100%; /* 一開始隱藏在右側螢幕外 */
+  width: 150px; /* 設定圖片大小 */
+  height: auto;
+  animation: slide-in-out 3s ease-in-out forwards; /* 3秒的滑動動畫 */
 }
 
+/* 生日圖片隱藏 */
+#birthday-image {
+  display: none;
+  margin-top: 20px;
+}
 
+/* 警告按鈕樣式 */
+.warning-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加陰影以增加立體感 */
+  transition: transform 0.1s ease, box-shadow 0.1s ease; /* 添加過渡效果 */
+}
+
+.warning-btn:hover {
+  background-color: #d32f2f;
+}
+
+.warning-btn:active {
+  transform: translateY(2px); /* 按下時向下移動 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 調整陰影，讓按鈕看起來更凹陷 */
+}
+
+/* 貓咪動畫的Keyframe */
+@keyframes run-animation {
+  0% { left: -100px; }
+  100% { left: 100%; }
+}
+
+h1 {
+  font-size: 2.5rem; /* 增加字體大小 */
+  color: #fff; /* 白色字體 */
+  text-align: center; /* 置中 */
+  font-family: 'Georgia', serif; /* 使用優雅的字體 */
+  padding: 15px; /* 增加內邊距 */
+  border: 5px dashed #ff4081; /* 使用虛線邊框 */
+  border-radius: 15px; /* 增加圓角 */
+  background-color: rgba(255, 64, 129, 0.7); /* 半透明背景 */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* 添加陰影 */
+  animation: bounce 1s ease-in-out infinite; /* 設置彈跳動畫 */
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .calendar-image {
+    width: 90%; /* 在小屏幕上使日曆圖片寬度變小 */
+  }
+  .date-circle {
+    width: 30px; /* 在小屏幕上圓圈寬度變小 */
+    height: 30px; /* 在小屏幕上圓圈高度變小 */
+  }
+  h1 {
+    font-size: 2rem; /* 在小屏幕上字體大小變小 */
+  }
+}
